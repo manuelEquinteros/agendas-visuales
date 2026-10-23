@@ -1,0 +1,141 @@
+@if (agenda) {
+  <section
+    class="final-sheet"
+    [class.weekly-sheet]="agenda.tipoAgenda === 'SEMANAL'"
+    [class.daily-sheet]="agenda.tipoAgenda === 'DIARIA'"
+  >
+    <header class="sheet-header">
+      <div class="sheet-title">
+        <h1>
+          {{ agenda.titulo }}
+        </h1>
+      </div>
+
+      @if (agenda.tipoAgenda === 'SEMANAL') {
+        <div class="sheet-period">
+          {{ formatShortDate(agenda.fechaInicio) }}
+
+          @if (agenda.fechaFin) {
+            <span>
+              —
+              {{ formatShortDate(agenda.fechaFin) }}
+            </span>
+          }
+        </div>
+      }
+    </header>
+
+    @if (agenda.tipoAgenda === 'SEMANAL') {
+      <div
+        class="weekly-board"
+        [style.grid-template-columns]="'repeat(' + agenda.dias.length + ', minmax(0, 1fr))'"
+      >
+        @for (dia of agenda.dias; track dia.clientId) {
+          <section class="day-strip" [class]="dayColorClass(dia)">
+            <header class="day-header">
+              <strong>
+                {{ formatDayName(dia.fecha) }}
+              </strong>
+
+              <span>
+                {{ formatShortDate(dia.fecha) }}
+              </span>
+            </header>
+
+            <div class="activities-strip">
+              @for (actividad of dia.actividades; track actividad.clientId) {
+                <article class="final-activity">
+                  <div class="pictogram-area">
+                    @if (actividad.pictograma) {
+                      <img
+                        [src]="actividad.pictograma.urlImagen"
+                        [alt]="actividad.pictograma.descripcion || actividad.titulo"
+                      />
+                    } @else {
+                      <div class="pictogram-placeholder">
+                        <span>
+                          {{ actividad.titulo.charAt(0).toUpperCase() }}
+                        </span>
+                      </div>
+                    }
+                  </div>
+
+                  <div class="activity-information">
+                    <strong class="activity-title">
+                      {{ actividad.titulo }}
+                    </strong>
+
+                    @if (actividad.horaInicio) {
+                      <span class="activity-time">
+                        {{ formatSchedule(actividad) }}
+                      </span>
+                    }
+
+                    @if (actividad.acompaniante) {
+                      <span class="activity-companion">
+                        {{ actividad.acompaniante }}
+                      </span>
+                    }
+                  </div>
+                </article>
+              }
+            </div>
+          </section>
+        }
+      </div>
+    } @else {
+      @if (agenda.dias.length > 0) {
+        <section class="daily-board" [class]="dayColorClass(agenda.dias[0])">
+          <header class="daily-header">
+            <strong>
+              {{ formatDayName(agenda.dias[0].fecha) }}
+            </strong>
+
+            <span>
+              {{ formatLongDate(agenda.dias[0].fecha) }}
+            </span>
+          </header>
+
+          <div class="daily-activities">
+            @for (actividad of agenda.dias[0].actividades; track actividad.clientId) {
+              <article class="daily-activity">
+                <div class="daily-pictogram">
+                  @if (actividad.pictograma) {
+                    <img
+                      [src]="actividad.pictograma.urlImagen"
+                      [alt]="actividad.pictograma.descripcion || actividad.titulo"
+                    />
+                  } @else {
+                    <div class="pictogram-placeholder">
+                      <span>
+                        {{ actividad.titulo.charAt(0).toUpperCase() }}
+                      </span>
+                    </div>
+                  }
+                </div>
+
+                <div class="daily-information">
+                  <strong>
+                    {{ actividad.titulo }}
+                  </strong>
+
+                  @if (actividad.horaInicio) {
+                    <span>
+                      {{ formatSchedule(actividad) }}
+                    </span>
+                  }
+
+                  @if (actividad.acompaniante) {
+                    <small>
+                      {{ actividad.acompaniante }}
+                    </small>
+                  }
+                </div>
+              </article>
+            }
+          </div>
+        </section>
+      }
+    }
+  </section>
+}

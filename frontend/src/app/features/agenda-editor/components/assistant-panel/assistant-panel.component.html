@@ -1,0 +1,48 @@
+<section class="assistant-panel">
+  <header class="assistant-header">
+    <div class="assistant-title">
+      <span class="assistant-icon"> ✦ </span>
+
+      <div>
+        <h2>Asistente</h2>
+
+        <p>Creá o adaptá una agenda mediante lenguaje natural.</p>
+      </div>
+    </div>
+  </header>
+
+  <div class="messages" #messagesContainer>
+    @for (message of messages(); track $index) {
+      <div
+        class="message"
+        [class.user]="message.author === 'user'"
+        [class.assistant]="message.author === 'assistant'"
+      >
+        {{ message.text }}
+      </div>
+    }
+
+    @if (loading()) {
+      <div class="message assistant loading-message">Procesando...</div>
+    }
+  </div>
+
+  <div class="composer">
+    <textarea
+      [(ngModel)]="message"
+      placeholder="Ejemplo: Creá una rutina para la mañana"
+      [disabled]="loading()"
+      (keydown)="onComposerKeydown($event)"
+    >
+    </textarea>
+
+    <button
+      type="button"
+      class="send-button"
+      [disabled]="loading() || !message.trim()"
+      (click)="sendMessage()"
+    >
+      {{ loading() ? '...' : 'Enviar' }}
+    </button>
+  </div>
+</section>

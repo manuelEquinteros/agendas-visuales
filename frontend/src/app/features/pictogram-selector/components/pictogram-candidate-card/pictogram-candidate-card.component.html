@@ -1,0 +1,40 @@
+<button
+  type="button"
+  class="candidate-card"
+  [class.selected]="selected"
+  (click)="select()"
+>
+
+  <div class="image-container">
+
+    <img
+      [src]="candidate.urlImagen"
+      [alt]="candidate.descripcion"
+    >
+
+  </div>
+
+
+  <div class="candidate-info">
+
+    <strong>
+      {{ candidate.descripcion }}
+    </strong>
+
+    <span>
+      ID ARASAAC:
+      {{ candidate.idArasaac }}
+    </span>
+
+  </div>
+
+
+  @if (selected) {
+
+  <div class="selected-badge">
+    Seleccionado
+  </div>
+
+  }
+
+</button>

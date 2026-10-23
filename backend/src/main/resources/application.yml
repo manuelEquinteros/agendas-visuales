@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: agendas-visuales-backend
+
+  profiles:
+    default: local
+
+  ai:
+    model:
+      chat: ${SPRING_AI_CHAT_MODEL:none}
+
+app:
+  ai:
+    provider: ${AI_PROVIDER:fake}
+
+  arasaac:
+    base-url: ${ARASAAC_BASE_URL:https://api.arasaac.org/v1}
+    connect-timeout: ${ARASAAC_CONNECT_TIMEOUT:3s}
+    read-timeout: ${ARASAAC_READ_TIMEOUT:5s}

@@ -1,0 +1,135 @@
+<div class="dialog-backdrop">
+
+  <section class="dialog">
+
+    <header class="dialog-header">
+
+      <div>
+
+        <span class="eyebrow">
+          Actividad {{ actividad.orden }}
+        </span>
+
+        <h2>
+          Editar actividad
+        </h2>
+
+      </div>
+
+      <button
+        class="close-button"
+        type="button"
+        aria-label="Cerrar"
+        (click)="onCancel()">
+        ×
+      </button>
+
+    </header>
+
+
+    <div class="dialog-content">
+
+      <label class="field">
+
+        <span>
+          Título *
+        </span>
+
+        <input
+          type="text"
+          [(ngModel)]="form.titulo"
+          maxlength="120">
+
+      </label>
+
+
+      <label class="field">
+
+        <span>
+          Descripción
+        </span>
+
+        <textarea
+          rows="3"
+          [(ngModel)]="form.descripcion">
+        </textarea>
+
+      </label>
+
+
+      <div class="time-fields">
+
+        <label class="field">
+
+          <span>
+            Hora de inicio
+          </span>
+
+          <input
+            type="time"
+            [(ngModel)]="form.horaInicio">
+
+        </label>
+
+
+        <label class="field">
+
+          <span>
+            Hora de fin
+          </span>
+
+          <input
+            type="time"
+            [(ngModel)]="form.horaFin">
+
+        </label>
+
+      </div>
+
+
+      <label class="field">
+
+        <span>
+          Acompañante
+        </span>
+
+        <input
+          type="text"
+          [(ngModel)]="form.acompaniante"
+          placeholder="Ejemplo: Mamá">
+
+      </label>
+
+
+      @if (validationMessage) {
+
+        <p class="validation-message">
+          {{ validationMessage }}
+        </p>
+
+      }
+
+    </div>
+
+
+    <footer class="dialog-actions">
+
+      <button
+        class="cancel-button"
+        type="button"
+        (click)="onCancel()">
+        Cancelar
+      </button>
+
+      <button
+        class="save-button"
+        type="button"
+        (click)="onSave()">
+        Guardar cambios
+      </button>
+
+    </footer>
+
+  </section>
+
+</div>

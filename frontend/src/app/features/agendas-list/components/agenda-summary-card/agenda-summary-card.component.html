@@ -1,0 +1,46 @@
+<article class="agenda-card">
+  <div class="agenda-type">
+    {{ agenda.tipoAgenda === 'SEMANAL' ? '▦ Semanal' : '□ Diaria' }}
+  </div>
+
+  <h2>
+    {{ agenda.titulo }}
+  </h2>
+
+  <p class="agenda-dates">
+    {{ formatDate(agenda.fechaInicio) }}
+
+    @if (agenda.fechaFin && agenda.fechaFin !== agenda.fechaInicio) {
+      <span>
+        —
+        {{ formatDate(agenda.fechaFin) }}
+      </span>
+    }
+  </p>
+
+  <footer class="agenda-footer">
+    <span>
+      Actualizada
+      {{ formatDate(agenda.fechaModificacion) }}
+    </span>
+
+    <div class="agenda-actions">
+      <button
+        class="delete-button"
+        type="button"
+        [disabled]="deleting"
+        (click)="deleteRequested.emit()"
+      >
+        @if (deleting) {
+          Eliminando...
+        } @else {
+          Eliminar
+        }
+      </button>
+
+      <button class="open-button" type="button" [routerLink]="['/agendas', agenda.id, 'edit']">
+        Abrir
+      </button>
+    </div>
+  </footer>
+</article>

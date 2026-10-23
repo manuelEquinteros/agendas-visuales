@@ -1,0 +1,148 @@
+:host {
+  display: block;
+}
+
+.agenda-card {
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  min-height: 290px;
+
+  padding: 24px;
+
+  background: #e8f4ff;
+
+  border-radius: 16px;
+
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.06);
+
+  h2 {
+    margin: 16px 0 8px;
+
+    font-size: 20px;
+
+    color: #1f2937;
+  }
+}
+
+.agenda-type {
+  align-self: flex-start;
+
+  padding: 5px 10px;
+
+  border: 1px solid #d1d5db;
+  border-radius: 999px;
+
+  background: #ffffff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  color: #374151;
+}
+
+.agenda-dates {
+  margin: 0;
+
+  color: #6b7280;
+  font-size: 14px;
+}
+
+.agenda-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 12px;
+
+  margin-top: auto;
+  padding-top: 18px;
+
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+.open-button {
+  border: 0;
+  border-radius: 999px;
+
+  padding: 8px 16px;
+
+  background: #ffffff;
+  color: #2563eb;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.agenda-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+
+.delete-button,
+.open-button {
+  min-height: 34px;
+
+  border-radius: 18px;
+
+  padding: 7px 14px;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    color 0.15s ease;
+}
+
+
+.delete-button {
+  border: 1px solid #fecaca;
+
+  background: #ffffff;
+
+  color: #dc2626;
+}
+
+
+.delete-button:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+
+
+.delete-button:disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+
+.open-button {
+  border: 1px solid #dbeafe;
+
+  background: #ffffff;
+
+  color: #2563eb;
+}
+
+
+.open-button:hover {
+  background: #eff6ff;
+}

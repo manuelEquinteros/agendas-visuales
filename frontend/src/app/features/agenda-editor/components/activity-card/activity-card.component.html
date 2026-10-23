@@ -1,0 +1,180 @@
+<article class="activity-card">
+
+  <div class="pictogram-container">
+
+    @if (actividad.conceptoVisual) {
+
+    <button
+      type="button"
+      class="pictogram-alternatives-button"
+      title="Ver pictogramas alternativos"
+      (click)="onSelectPictogram()"
+    >
+      Ver pictos
+    </button>
+
+    }
+
+
+    @if (actividad.pictograma) {
+
+    <img
+      [src]="actividad.pictograma.urlImagen"
+      [alt]="actividad.pictograma.descripcion"
+    >
+
+    } @else {
+
+    <div class="pictogram-placeholder">
+
+      <span>▧</span>
+
+      <small>
+        Sin pictograma
+      </small>
+
+    </div>
+
+    }
+
+  </div>
+
+
+  <div class="activity-content">
+
+    <span class="activity-order">
+      Actividad {{ actividad.orden }}
+    </span>
+
+    <h4>
+      {{ actividad.titulo }}
+    </h4>
+
+
+    @if (actividad.descripcion) {
+
+    <p class="description">
+      {{ actividad.descripcion }}
+    </p>
+
+    }
+
+
+    <div class="activity-meta">
+
+      @if (actividad.horaInicio) {
+
+      <div class="activity-detail">
+
+        <span>
+          {{ formatTime(actividad.horaInicio) }}
+
+          @if (actividad.horaFin) {
+          — {{ formatTime(actividad.horaFin) }}
+          }
+
+          hs.
+        </span>
+
+      </div>
+
+      }
+
+
+      @if (actividad.acompaniante) {
+
+      <div class="activity-detail">
+
+        <strong>
+          Acompañante:
+        </strong>
+
+        <span>
+          {{ actividad.acompaniante }}
+        </span>
+
+      </div>
+
+      }
+
+    </div>
+
+
+    @if (showDaySelector) {
+
+    <div class="day-selector">
+
+      <select
+        [id]="'day-' + actividad.clientId"
+        (change)="onDayChange($event)"
+      >
+
+        @for (
+        dia of availableDays;
+        track dia.clientId
+        ) {
+
+        <option
+          [value]="dia.clientId"
+          [selected]="
+            dia.clientId === currentDayClientId
+          "
+        >
+
+          Día {{ dia.orden }}
+          — {{ formatDate(dia.fecha) }}
+
+        </option>
+
+        }
+
+      </select>
+
+    </div>
+
+    }
+
+
+    <div class="activity-actions">
+
+      <button
+        type="button"
+        class="edit-button"
+        (click)="onEdit()"
+      >
+        Editar
+      </button>
+
+      <button
+        type="button"
+        class="move-button"
+        title="Mover arriba"
+        [disabled]="!canMoveUp"
+        (click)="onMoveUp()"
+      >
+        ↑
+      </button>
+
+      <button
+        type="button"
+        class="move-button"
+        title="Mover abajo"
+        [disabled]="!canMoveDown"
+        (click)="onMoveDown()"
+      >
+        ↓
+      </button>
+
+      <button
+        type="button"
+        class="delete-button"
+        (click)="onRemove()"
+      >
+        Eliminar
+      </button>
+
+    </div>
+
+  </div>
+
+</article>

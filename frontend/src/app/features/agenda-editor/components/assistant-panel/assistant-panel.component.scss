@@ -1,0 +1,208 @@
+:host {
+  display: block;
+
+  width: 100%;
+  min-width: 0;
+}
+
+.assistant-panel {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  height: min(620px, calc(100vh - 150px));
+
+  min-height: 420px;
+
+  box-sizing: border-box;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+
+  box-shadow:
+    0 2px 8px
+    rgba(0, 0, 0, 0.05);
+
+  overflow: hidden;
+}
+
+.assistant-header {
+  padding: 18px;
+
+  border-bottom:
+    1px solid #e5e7eb;
+}
+
+.assistant-title {
+  display: flex;
+  align-items: flex-start;
+
+  gap: 10px;
+
+  h2 {
+    margin: 0;
+
+    color: #1f2937;
+
+    font-size: 17px;
+  }
+
+  p {
+    margin: 5px 0 0;
+
+    color: #6b7280;
+
+    font-size: 12px;
+    line-height: 1.4;
+  }
+}
+
+.assistant-icon {
+  display: grid;
+  place-items: center;
+
+  flex: 0 0 auto;
+
+  width: 28px;
+  height: 28px;
+
+  border-radius: 9px;
+
+  background: #eef2ff;
+
+  color: #4338ca;
+
+  font-size: 14px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px;
+
+  flex: 1;
+
+  min-height: 0;
+
+  padding: 16px;
+
+  box-sizing: border-box;
+
+  overflow-y: auto;
+}
+
+.message {
+  max-width: 88%;
+
+  padding: 10px 12px;
+
+  box-sizing: border-box;
+
+  border-radius: 12px;
+
+  font-size: 12px;
+  line-height: 1.45;
+
+  overflow-wrap: anywhere;
+}
+
+.message.assistant {
+  align-self: flex-start;
+
+  background: #f8fafc;
+
+  border:
+    1px solid #e5e7eb;
+
+  color: #374151;
+}
+
+.message.user {
+  align-self: flex-end;
+
+  background: #e8f6ee;
+
+  border:
+    1px solid #b9dfc8;
+
+  color: #234c35;
+}
+
+.loading-message {
+  color: #6b7280;
+
+  font-style: italic;
+}
+
+.composer {
+  display: grid;
+
+  gap: 8px;
+
+  padding: 14px;
+
+  box-sizing: border-box;
+
+  border-top:
+    1px solid #e5e7eb;
+
+  background: #ffffff;
+
+  textarea {
+    width: 100%;
+    min-height: 82px;
+
+    box-sizing: border-box;
+
+    resize: none;
+
+    padding: 10px 12px;
+
+    border:
+      1px solid #d1d5db;
+
+    border-radius: 10px;
+
+    color: #1f2937;
+
+    font: inherit;
+    font-size: 12px;
+
+    outline: none;
+
+    &:focus {
+      border-color: #9ca3af;
+    }
+
+    &:disabled {
+      background: #f3f4f6;
+    }
+  }
+}
+
+.send-button {
+  justify-self: end;
+
+  padding: 8px 14px;
+
+  border: 0;
+  border-radius: 9px;
+
+  background: #22a06b;
+
+  color: #ffffff;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  &:disabled {
+    opacity: 0.5;
+
+    cursor: not-allowed;
+  }
+}

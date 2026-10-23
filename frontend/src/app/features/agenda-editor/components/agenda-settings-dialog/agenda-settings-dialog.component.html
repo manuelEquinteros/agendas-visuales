@@ -1,0 +1,133 @@
+<div class="dialog-backdrop">
+
+  <section class="dialog">
+
+    <header class="dialog-header">
+
+      <div>
+
+        <span class="eyebrow">
+          Agenda visual
+        </span>
+
+        <h2>
+          Configurar agenda
+        </h2>
+
+      </div>
+
+      <button
+        class="close-button"
+        type="button"
+        aria-label="Cerrar"
+        (click)="onCancel()">
+        ×
+      </button>
+
+    </header>
+
+
+    <div class="dialog-content">
+
+      <label class="field">
+
+        <span>
+          Título *
+        </span>
+
+        <input
+          type="text"
+          [(ngModel)]="form.titulo"
+          maxlength="120"
+          placeholder="Ejemplo: Rutina de la mañana">
+
+      </label>
+
+
+      <label class="field">
+
+        <span>
+          Tipo de agenda *
+        </span>
+
+        <select
+          [(ngModel)]="form.tipoAgenda"
+          (ngModelChange)="onTypeChange()">
+
+          <option value="DIARIA">
+            Diaria
+          </option>
+
+          <option value="SEMANAL">
+            Semanal
+          </option>
+
+        </select>
+
+      </label>
+
+
+      <label class="field">
+
+        <span>
+          Fecha de inicio *
+        </span>
+
+        <input
+          type="date"
+          [(ngModel)]="form.fechaInicio">
+
+      </label>
+
+
+      @if (
+        form.tipoAgenda === 'SEMANAL'
+      ) {
+
+        <label class="field">
+
+          <span>
+            Fecha de fin *
+          </span>
+
+          <input
+            type="date"
+            [(ngModel)]="form.fechaFin">
+
+        </label>
+
+      }
+
+
+      @if (validationMessage) {
+
+        <p class="validation-message">
+          {{ validationMessage }}
+        </p>
+
+      }
+
+    </div>
+
+
+    <footer class="dialog-actions">
+
+      <button
+        class="cancel-button"
+        type="button"
+        (click)="onCancel()">
+        Cancelar
+      </button>
+
+      <button
+        class="confirm-button"
+        type="button"
+        (click)="onSave()">
+        Aplicar
+      </button>
+
+    </footer>
+
+  </section>
+
+</div>

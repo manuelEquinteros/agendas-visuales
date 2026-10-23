@@ -1,0 +1,87 @@
+<section class="day-column">
+
+  <header class="day-header">
+
+    <div class="day-header-main">
+
+      <div class="day-title">
+
+        <h3 class="day-name">
+          {{ formatDayName(dia.fecha) }}
+        </h3>
+
+        <span class="day-date">
+          {{ formatDateDescription(dia.fecha) }}
+        </span>
+
+      </div>
+
+      <span class="activity-count">
+
+        {{ dia.actividades.length }}
+
+        {{ dia.actividades.length === 1
+        ? 'actividad'
+        : 'actividades' }}
+
+      </span>
+
+    </div>
+
+    <button class="add-activity-button" type="button" (click)="onAddActivity()">
+
+      + Agregar actividad
+
+    </button>
+
+  </header>
+
+
+  <div class="day-content">
+
+    @if (dia.actividades.length === 0) {
+
+    <div class="empty-day">
+
+      <span>+</span>
+
+      <p>
+        Sin actividades
+      </p>
+
+    </div>
+
+    } @else {
+
+    <div class="activities-list">
+
+      @for (
+      actividad of dia.actividades;
+      track actividad.clientId;
+      let first = $first;
+      let last = $last
+      ) {
+
+      <app-activity-card [actividad]="actividad" [canMoveUp]="!first" [canMoveDown]="!last"
+        [availableDays]="agenda()?.dias ?? []" [currentDayClientId]="dia.clientId"
+        [showDaySelector]="agenda()?.tipoAgenda === 'SEMANAL'" (edit)="onEditActivity($event)"
+        (moveUp)="onMoveUp($event)" (moveDown)="onMoveDown($event)" (changeDay)="onChangeDay($event)"
+        (remove)="onRemoveActivity($event)"
+        (selectPictogram)="onSelectPictogram($event)" />
+
+      }
+
+    </div>
+
+    }
+
+  </div>
+
+</section>
+
+
+@if (editingActivity(); as actividad) {
+
+<app-activity-edit-dialog [actividad]="actividad" (saved)="onSaveActivity($event)" (cancelled)="onCancelEdit()" />
+
+}

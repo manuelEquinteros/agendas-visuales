@@ -1,0 +1,36 @@
+<section class="agendas-page">
+  <header class="page-header">
+    <div>
+      <h1>Mis Agendas Visuales</h1>
+
+      <p>
+        Tenés {{ agendas().length }}
+        {{ agendas().length === 1 ? 'agenda creada' : 'agendas creadas' }}.
+      </p>
+    </div>
+
+    <button class="create-button" type="button" routerLink="/agendas/new">
+      + Crear nueva agenda
+    </button>
+  </header>
+
+  <main class="agendas-content">
+    @if (loading()) {
+      <app-loading-state />
+    } @else if (errorMessage()) {
+      <app-error-state [message]="errorMessage() ?? ''" (retry)="loadAgendas()" />
+    } @else if (agendas().length === 0) {
+      <app-empty-state />
+    } @else {
+      <div class="agendas-grid">
+        @for (agenda of agendas(); track agenda.id) {
+          <app-agenda-summary-card
+            [agenda]="agenda"
+            [deleting]="deletingId() === agenda.id"
+            (deleteRequested)="deleteAgenda(agenda)"
+          />
+        }
+      </div>
+    }
+  </main>
+</section>

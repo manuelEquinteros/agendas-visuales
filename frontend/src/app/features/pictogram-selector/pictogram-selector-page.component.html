@@ -1,0 +1,201 @@
+<section class="selector-page">
+
+  <header class="selector-header">
+
+    <div>
+
+      <h1>
+        Modificando:
+        {{ activity()?.titulo ?? 'Pictograma' }}
+      </h1>
+
+      <p>
+        Seleccioná la imagen que mejor represente la actividad.
+      </p>
+
+    </div>
+
+
+    <button type="button" class="back-button" (click)="backToEditor()">
+      Volver sin guardar
+    </button>
+
+  </header>
+
+
+  <div class="selector-layout">
+
+    <section class="results-panel">
+
+      <div class="section-heading">
+
+        <div>
+
+          <h2>
+            Resultados de ARASAAC
+          </h2>
+
+          <p>
+            Hacé clic en una opción para previsualizarla.
+          </p>
+
+        </div>
+
+      </div>
+
+
+      <div class="search-row">
+
+        <input type="text" [(ngModel)]="searchTerm" placeholder="Ejemplo: natación" [disabled]="loading()"
+          (keyup.enter)="search()">
+
+
+        <button type="button" class="search-button" [disabled]="loading()" (click)="search()">
+          @if (loading()) {
+          Buscando...
+          } @else {
+          Buscar
+          }
+        </button>
+
+      </div>
+
+
+      @if (loading()) {
+
+      <div class="status-panel">
+
+        <div class="loader"></div>
+
+        <strong>
+          Buscando pictogramas...
+        </strong>
+
+        <p>
+          Estamos consultando ARASAAC.
+        </p>
+
+      </div>
+
+      } @else if (errorMessage()) {
+
+      <div class="status-panel error">
+
+        <span class="status-icon">
+          !
+        </span>
+
+        <strong>
+          No pudimos completar la búsqueda
+        </strong>
+
+        <p>
+          {{ errorMessage() }}
+        </p>
+
+      </div>
+
+      } @else if (
+      hasSearched()
+      && candidates().length === 0
+      ) {
+
+      <div class="status-panel">
+
+        <span class="status-icon">
+          ▧
+        </span>
+
+        <strong>
+          No encontramos pictogramas
+        </strong>
+
+        <p>
+          No hubo resultados para
+          “{{ lastSearchTerm() }}”.
+          Probá con una palabra relacionada
+          o un término más general.
+        </p>
+
+      </div>
+
+      } @else if (
+      candidates().length > 0
+      ) {
+
+      <div class="results-grid">
+
+        @for (
+        candidate of candidates();
+        track candidate.idArasaac
+        ) {
+
+        <app-pictogram-candidate-card [candidate]="candidate" [selected]="
+            selectedCandidate()?.idArasaac
+              === candidate.idArasaac
+          " (candidateSelected)="
+            selectCandidate($event)
+          " />
+
+        }
+
+      </div>
+
+      } @else {
+
+      <div class="status-panel">
+
+        <span class="status-icon">
+          ▧
+        </span>
+
+        <strong>
+          Buscá un pictograma
+        </strong>
+
+        <p>
+          Escribí una actividad o concepto para consultar ARASAAC.
+        </p>
+
+      </div>
+
+      }
+
+    </section>
+
+
+    <aside class="preview-panel">
+
+      <h2>
+        Vista previa
+      </h2>
+
+
+      <app-pictogram-preview [candidate]="selectedCandidate()" />
+
+
+      <button type="button" class="confirm-button" [disabled]="!selectedCandidate()" (click)="confirmAndApply()">
+        Confirmar y aplicar
+      </button>
+
+    </aside>
+
+  </div>
+
+  <footer class="arasaac-attribution">
+
+    <span>
+      Pictogramas:
+      Sergio Palao ·
+      ARASAAC ·
+      Gobierno de Aragón ·
+      CC BY-NC-SA
+    </span>
+
+    <a href="https://arasaac.org" target="_blank" rel="noopener noreferrer">
+      arasaac.org
+    </a>
+
+  </footer>
+
+</section>

@@ -1,0 +1,97 @@
+<section class="editor-page" [class.final-mode]="viewMode() === 'final'">
+  <header class="editor-header">
+    <div class="header-title">
+      <a class="back-link" routerLink="/agendas"> ← Mis agendas </a>
+
+      <h1>
+        {{ agenda()?.id === null ? 'Crear agenda' : 'Editar agenda' }}
+      </h1>
+    </div>
+
+    <div class="header-actions">
+      @if (saveMessage()) {
+        <span class="save-message">
+          {{ saveMessage() }}
+        </span>
+      }
+
+      @if (errorMessage()) {
+        <span class="header-error">
+          {{ errorMessage() }}
+        </span>
+      }
+
+      <div class="view-toggle" role="group" aria-label="Modo de visualización">
+        <button
+          class="view-mode-button"
+          [class.active]="viewMode() === 'edit'"
+          type="button"
+          (click)="showEditMode()"
+        >
+          Edición
+        </button>
+
+        <button
+          class="view-mode-button"
+          [class.active]="viewMode() === 'final'"
+          type="button"
+          [disabled]="loading() || !agenda()"
+          (click)="showFinalMode()"
+        >
+          Vista final
+        </button>
+      </div>
+
+      @if (viewMode() === 'edit') {
+        <button class="settings-button" type="button" (click)="openSettings()">
+          Configurar agenda
+        </button>
+
+        <button class="save-button" type="button" [disabled]="saving()" (click)="onSaveAgenda()">
+          {{ saving() ? 'Guardando...' : 'Guardar agenda' }}
+        </button>
+      } @else {
+        <button class="print-button" type="button" [disabled]="!agenda()" (click)="printAgenda()">
+          Imprimir
+        </button>
+      }
+    </div>
+  </header>
+
+  @if (viewMode() === 'edit') {
+    <main class="editor-layout">
+      <app-assistant-panel />
+
+      <div class="canvas-wrapper">
+        @if (loading()) {
+          <div class="editor-state">Cargando agenda...</div>
+        } @else {
+          <app-agenda-canvas
+            [agenda]="agenda()"
+            (selectPictogram)="openPictogramSelector($event)"
+          />
+        }
+      </div>
+    </main>
+  } @else {
+    <main class="final-layout">
+      @if (loading()) {
+        <div class="editor-state">Cargando agenda...</div>
+      } @else if (agenda(); as currentAgenda) {
+        <div class="final-wrapper">
+          <app-final-agenda-view [agenda]="currentAgenda" />
+        </div>
+      } @else {
+        <div class="editor-state">No hay una agenda para visualizar.</div>
+      }
+    </main>
+  }
+</section>
+
+@if (viewMode() === 'edit' && settingsOpen() && agenda(); as currentAgenda) {
+  <app-agenda-settings-dialog
+    [agenda]="currentAgenda"
+    (saved)="onSettingsSaved($event)"
+    (cancelled)="closeSettings()"
+  />
+}

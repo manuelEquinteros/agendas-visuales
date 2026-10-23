@@ -1,0 +1,75 @@
+<section class="agenda-preview">
+
+  <header class="preview-header">
+
+    <h2>
+      Vista previa
+    </h2>
+
+    @if (agenda) {
+
+    <h3 class="agenda-title">
+      {{ agenda.titulo }}
+    </h3>
+
+    <span class="agenda-type">
+      {{ agenda.tipoAgenda === 'DIARIA'
+      ? 'Diaria'
+      : 'Semanal' }}
+    </span>
+
+    } @else {
+
+    <div></div>
+
+    <span class="agenda-type">
+      Agenda visual
+    </span>
+
+    }
+
+  </header>
+
+  <div class="canvas-viewport">
+
+    @if (!agenda) {
+
+    <div class="preview-empty">
+
+      <div class="preview-icon">
+        ▦
+      </div>
+
+      <h3>
+        La agenda aparecerá aquí
+      </h3>
+
+      <p>
+        Las actividades y pictogramas se mostrarán
+        organizados por día.
+      </p>
+
+    </div>
+
+    } @else {
+
+    <div class="canvas-workspace">
+
+      <div class="days-container" [class.daily]="agenda.tipoAgenda === 'DIARIA'"
+        [class.weekly]="agenda.tipoAgenda === 'SEMANAL'">
+
+        @for (dia of agenda.dias; track dia.clientId) {
+
+        <app-day-column [dia]="dia" (selectPictogram)="onSelectPictogram($event)" />
+
+        }
+
+      </div>
+
+    </div>
+
+    }
+
+  </div>
+
+</section>

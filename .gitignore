@@ -1,0 +1,61 @@
+# =========================
+# Secrets / environment
+# =========================
+.env
+.env.*
+*.env
+secrets/
+*.secret
+*.key
+
+# =========================
+# Java / Maven
+# =========================
+backend/target/
+target/
+*.class
+*.jar
+*.war
+
+# =========================
+# Angular / Node
+# =========================
+frontend/node_modules/
+frontend/dist/
+node_modules/
+dist/
+.angular/
+.cache/
+
+# =========================
+# IDEs
+# =========================
+.idea/
+*.iml
+.vscode/
+.settings/
+.project
+.classpath
+.factorypath
+.springBeans
+.sts4-cache/
+
+# =========================
+# Logs
+# =========================
+*.log
+logs/
+
+# =========================
+# OS
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Temporary files
+# =========================
+*.tmp
+*.bak
+*.swp
+~$*

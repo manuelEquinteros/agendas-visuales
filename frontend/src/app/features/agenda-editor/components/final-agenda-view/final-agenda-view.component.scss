@@ -1,0 +1,516 @@
+:host {
+  display: block;
+
+  width: 100%;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.final-sheet {
+  box-sizing: border-box;
+
+  margin: 0 auto;
+
+  background: #ffffff;
+
+  color: #252525;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.14);
+
+  overflow: hidden;
+}
+
+.weekly-sheet {
+  width: min(100%, 1120px);
+
+  min-height: 790px;
+
+  padding: 28px;
+}
+
+.daily-sheet {
+  width: min(100%, 794px);
+
+  min-height: 1080px;
+
+  padding: 34px 48px;
+}
+
+.sheet-header {
+  display: flex;
+
+  align-items: flex-end;
+
+  justify-content: space-between;
+
+  gap: 24px;
+
+  padding: 0 4px 20px;
+
+  border-bottom: 2px solid #ececec;
+}
+
+.sheet-kicker {
+  display: block;
+
+  margin-bottom: 4px;
+
+  color: #747474;
+
+  font-size: 12px;
+
+  font-weight: 700;
+
+  letter-spacing: 0.12em;
+
+  text-transform: uppercase;
+}
+
+.sheet-header {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 16px;
+
+  padding:
+    0 4px 10px;
+
+  border-bottom:
+    1px solid #e5e5e5;
+}
+
+
+.sheet-title h1 {
+  margin: 0;
+
+  color: #242424;
+
+  font-size: 22px;
+
+  line-height: 1.05;
+}
+
+
+.sheet-period {
+  flex-shrink: 0;
+
+  color: #646464;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+/* =========================
+   VISTA SEMANAL
+   ========================= */
+
+.weekly-board {
+  display: grid;
+
+  align-items: start;
+
+  gap: 8px;
+
+  margin-top: 12px;
+}
+
+.day-strip {
+  --day-color: #8b95a5;
+
+  min-width: 0;
+
+  border: 2px solid var(--day-color);
+
+  border-radius: 7px 7px 4px 4px;
+
+  background: var(--day-color);
+
+  overflow: hidden;
+}
+
+.day-header {
+  display: flex;
+
+  min-height: 46px;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 1px;
+
+  padding: 5px 4px;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+
+.day-header strong {
+  font-size: clamp(
+    12px,
+    1.1vw,
+    15px
+  );
+
+  line-height: 1.05;
+
+  letter-spacing: 0.02em;
+
+  text-transform: uppercase;
+}
+
+
+.day-header span {
+  font-size: 9px;
+
+  line-height: 1;
+
+  font-weight: 600;
+
+  opacity: 0.95;
+}
+
+.activities-strip {
+  display: flex;
+
+  flex-direction: column;
+
+  background: #ffffff;
+}
+
+.final-activity {
+  display: flex;
+
+  min-height: 154px;
+
+  flex-direction: column;
+
+  border-bottom:
+    2px solid
+    var(--day-color);
+
+  background: #ffffff;
+}
+
+
+.final-activity:last-child {
+  border-bottom: 0;
+}
+
+
+.pictogram-area {
+  display: flex;
+
+  min-height: 112px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 5px 4px 2px;
+}
+
+
+.pictogram-area img {
+  display: block;
+
+  width: 100%;
+
+  max-width: 128px;
+
+  height: 108px;
+
+  object-fit: contain;
+}
+
+.pictogram-placeholder {
+  display: flex;
+
+  width: 78px;
+
+  height: 78px;
+
+  align-items: center;
+
+  justify-content: center;
+
+  border: 2px dashed #c8c8c8;
+
+  border-radius: 10px;
+
+  background: #f7f7f7;
+
+  color: #a0a0a0;
+
+  font-size: 32px;
+
+  font-weight: 700;
+}
+
+.activity-information {
+  display: flex;
+
+  flex: 1;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 1px;
+
+  padding: 4px 4px 5px;
+
+  border-top:
+    1px solid
+    #ededed;
+
+  text-align: center;
+}
+
+
+.activity-title {
+  font-size: 12px;
+
+  line-height: 1.1;
+}
+
+
+.activity-time {
+  color: #555555;
+
+  font-size: 10px;
+
+  line-height: 1.1;
+
+  font-weight: 700;
+}
+
+
+.activity-companion {
+  color: #777777;
+
+  font-size: 9px;
+
+  line-height: 1.1;
+}
+
+/* =========================
+   VISTA DIARIA
+   ========================= */
+
+.daily-board {
+  --day-color: #3585d3;
+
+  width: min(100%, 430px);
+
+  margin: 28px auto 0;
+
+  border: 3px solid var(--day-color);
+
+  border-radius: 8px 8px 4px 4px;
+
+  background: var(--day-color);
+
+  overflow: hidden;
+}
+
+.daily-header {
+  display: flex;
+
+  min-height: 82px;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+
+  padding: 12px;
+
+  color: #ffffff;
+
+  text-align: center;
+}
+
+.daily-header strong {
+  font-size: 24px;
+
+  letter-spacing: 0.04em;
+
+  text-transform: uppercase;
+}
+
+.daily-header span {
+  font-size: 13px;
+
+  font-weight: 600;
+}
+
+.daily-activities {
+  display: flex;
+
+  flex-direction: column;
+
+  background: #ffffff;
+}
+
+.daily-activity {
+  display: grid;
+
+  grid-template-columns: 55% 45%;
+
+  min-height: 176px;
+
+  border-bottom: 3px solid var(--day-color);
+
+  background: #ffffff;
+}
+
+.daily-activity:last-child {
+  border-bottom: 0;
+}
+
+.daily-pictogram {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  padding: 10px;
+
+  border-right: 1px solid #ededed;
+}
+
+.daily-pictogram img {
+  display: block;
+
+  width: 100%;
+
+  max-width: 178px;
+
+  height: 145px;
+
+  object-fit: contain;
+}
+
+.daily-information {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 7px;
+
+  padding: 14px;
+
+  text-align: center;
+}
+
+.daily-information strong {
+  font-size: 19px;
+
+  line-height: 1.2;
+}
+
+.daily-information span {
+  color: #505050;
+
+  font-size: 14px;
+
+  font-weight: 700;
+}
+
+.daily-information small {
+  color: #777777;
+
+  font-size: 12px;
+}
+
+/* =========================
+   COLORES POR DÍA
+   ========================= */
+
+.day-monday {
+  --day-color: #3585d3;
+}
+
+.day-tuesday {
+  --day-color: #3aad66;
+}
+
+.day-wednesday {
+  --day-color: #ee952f;
+}
+
+.day-thursday {
+  --day-color: #e64a3e;
+}
+
+.day-friday {
+  --day-color: #dc78ab;
+}
+
+.day-saturday {
+  --day-color: #dda915;
+}
+
+.day-sunday {
+  --day-color: #8a55a2;
+}
+
+.day-neutral {
+  --day-color: #718096;
+}
+
+/* =========================
+   PRINT BASE
+   ========================= */
+
+@media print {
+  :host {
+    width: 100%;
+  }
+
+  .final-sheet {
+    width: 100%;
+
+    max-width: none;
+
+    min-height: 0;
+
+    margin: 0;
+
+    box-shadow: none;
+
+    print-color-adjust: exact;
+
+    -webkit-print-color-adjust: exact;
+  }
+
+  .weekly-sheet,
+  .daily-sheet {
+    padding: 8mm;
+  }
+
+  .final-activity,
+  .daily-activity,
+  .day-strip {
+    break-inside: avoid;
+  }
+}

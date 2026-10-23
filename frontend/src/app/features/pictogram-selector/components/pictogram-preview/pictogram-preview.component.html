@@ -1,0 +1,52 @@
+<section class="preview">
+
+  @if (candidate) {
+
+  <div class="preview-image">
+
+    <img
+      [src]="candidate.urlImagen"
+      [alt]="candidate.descripcion"
+    >
+
+  </div>
+
+
+  <div class="preview-info">
+
+    <span class="preview-label">
+      Pictograma seleccionado
+    </span>
+
+    <h3>
+      {{ candidate.descripcion }}
+    </h3>
+
+    <span class="preview-id">
+      ID ARASAAC:
+      {{ candidate.idArasaac }}
+    </span>
+
+  </div>
+
+  } @else {
+
+  <div class="empty-preview">
+
+    <span class="empty-icon">
+      ▧
+    </span>
+
+    <strong>
+      Ningún pictograma seleccionado
+    </strong>
+
+    <p>
+      Elegí una opción de los resultados para verla acá.
+    </p>
+
+  </div>
+
+  }
+
+</section>
